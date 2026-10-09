@@ -1,0 +1,294 @@
+{
+  "version": 2,
+  "description": "旧版小红书虚拟商品关键词组合配置，仅保留兼容、测试和历史审计。现行策略以 config/discovery_root_terms.txt 和 coordination/KEYWORD_STRATEGY.md 为准；本配置不得直接批量写入生产队列或启动新词库轮转。",
+  "source_registry": {
+    "seed_keywords_xlsx_import": {
+      "type": "project_import_trace",
+      "path": "config/seed_keywords.txt",
+      "term_count": 78,
+      "provenance": "历史文件头曾声明来自已停用并移入回收站的《小红书K12&虚拟产品抓取.xlsx》",
+      "note": "旧 78 词只用于追溯现有历史任务；不得重新全量导入，也不得主导新的关键词发现与轮转。"
+    },
+    "offline_dimension_design_2026_07_29": {
+      "type": "offline_design_extension",
+      "provenance": "T20 基于项目既有类目做的有限组合设计",
+      "note": "商品形态、人群、场景、阶段/时效与探索词不是原始 xlsx 词库，不得冒充用户提供词。"
+    }
+  },
+  "policy": {
+    "hourly_budget": 6,
+    "per_round_budget": 2,
+    "keyword_cooldown_hours": 24,
+    "core_share": 0.7,
+    "min_explore_per_round": 1,
+    "max_generated_per_category": 6,
+    "max_total_candidates": 128,
+    "max_consecutive_failures": 2,
+    "failure_pause_hours": 3,
+    "risk_pause_requires_manual_resume": true
+  },
+  "categories": [
+    {
+      "id": "k12_learning",
+      "label": "K12 学习资料",
+      "layer": "core",
+      "priority": 100,
+      "seed_source_ids": ["seed_keywords_xlsx_import"],
+      "dimension_source_ids": ["offline_dimension_design_2026_07_29"],
+      "seed_terms": [
+        "小学学习资料",
+        "初中学习资料",
+        "高中学习资料",
+        "作文素材",
+        "作文模板",
+        "仿写训练",
+        "阅读理解",
+        "古诗文",
+        "口语听力",
+        "同步预习",
+        "阶段复习",
+        "备考资料",
+        "模考真题",
+        "错题本模板",
+        "学习计划模板",
+        "学习方法",
+        "奥数资料",
+        "自然拼读",
+        "教资题库",
+        "教招题库"
+      ],
+      "product_forms": ["电子版", "题库"],
+      "audiences": ["小学生"],
+      "scenarios": ["期末复习"],
+      "stage_modifiers": ["暑假"],
+      "explore_terms": ["中考冲刺资料"],
+      "dimension_budgets": {
+        "product_forms": 2,
+        "audiences": 1,
+        "scenarios": 1,
+        "stage_modifiers": 1,
+        "explore_terms": 1
+      },
+      "max_generated": 6
+    },
+    {
+      "id": "teacher_resources",
+      "label": "教师与教培资料",
+      "layer": "core",
+      "priority": 92,
+      "seed_source_ids": ["seed_keywords_xlsx_import"],
+      "dimension_source_ids": ["offline_dimension_design_2026_07_29"],
+      "seed_terms": [
+        "教师课件",
+        "教学设计",
+        "备课资料",
+        "赛课课件",
+        "主题班会",
+        "班级管理表格",
+        "学生成绩分析表",
+        "家长会课件",
+        "教师职称答辩",
+        "托管班运营",
+        "招生宣传模板",
+        "校园活动方案",
+        "节日活动方案",
+        "少先队资料",
+        "研学手册",
+        "科学实验课件",
+        "STEAM课程"
+      ],
+      "product_forms": ["可编辑课件", "表格模板"],
+      "audiences": ["新手教师"],
+      "scenarios": ["公开课备课"],
+      "stage_modifiers": ["开学季"],
+      "explore_terms": ["班主任工具包"],
+      "dimension_budgets": {
+        "product_forms": 2,
+        "audiences": 1,
+        "scenarios": 1,
+        "stage_modifiers": 1,
+        "explore_terms": 1
+      },
+      "max_generated": 6
+    },
+    {
+      "id": "office_templates",
+      "label": "办公与效率模板",
+      "layer": "core",
+      "priority": 88,
+      "seed_source_ids": ["seed_keywords_xlsx_import"],
+      "dimension_source_ids": ["offline_dimension_design_2026_07_29"],
+      "seed_terms": [
+        "飞书模板",
+        "Notion模板",
+        "Excel模板",
+        "PPT模板",
+        "运营SOP",
+        "知识库",
+        "人生管理系统",
+        "时间管理模板",
+        "习惯打卡模板",
+        "记账模板"
+      ],
+      "product_forms": ["可复制模板", "自动化表格"],
+      "audiences": ["职场新人"],
+      "scenarios": ["日常办公"],
+      "stage_modifiers": ["入门"],
+      "explore_terms": ["效率系统"],
+      "dimension_budgets": {
+        "product_forms": 2,
+        "audiences": 1,
+        "scenarios": 1,
+        "stage_modifiers": 1,
+        "explore_terms": 1
+      },
+      "max_generated": 6
+    },
+    {
+      "id": "ai_digital_tools",
+      "label": "AI 与数字工具",
+      "layer": "core",
+      "priority": 84,
+      "seed_source_ids": ["seed_keywords_xlsx_import"],
+      "dimension_source_ids": ["offline_dimension_design_2026_07_29"],
+      "seed_terms": [
+        "小程序",
+        "工具软件",
+        "AI提示词",
+        "AI工作流",
+        "短视频脚本",
+        "自媒体资料",
+        "小红书运营资料"
+      ],
+      "product_forms": ["提示词包", "工作流模板"],
+      "audiences": ["自媒体新手"],
+      "scenarios": ["内容创作"],
+      "stage_modifiers": ["入门"],
+      "explore_terms": ["AI效率工具"],
+      "dimension_budgets": {
+        "product_forms": 2,
+        "audiences": 1,
+        "scenarios": 1,
+        "stage_modifiers": 1,
+        "explore_terms": 1
+      },
+      "max_generated": 6
+    },
+    {
+      "id": "career_business",
+      "label": "职场商业资料",
+      "layer": "explore",
+      "priority": 76,
+      "seed_source_ids": ["seed_keywords_xlsx_import"],
+      "dimension_source_ids": ["offline_dimension_design_2026_07_29"],
+      "seed_terms": [
+        "简历模板",
+        "合同模板",
+        "营销资料包",
+        "私域运营资料",
+        "社群运营资料",
+        "职业测评",
+        "天赋测评"
+      ],
+      "product_forms": ["可编辑模板", "案例库"],
+      "audiences": ["应届生"],
+      "scenarios": ["秋招求职"],
+      "stage_modifiers": ["入门"],
+      "explore_terms": ["求职资料包"],
+      "dimension_budgets": {
+        "product_forms": 2,
+        "audiences": 1,
+        "scenarios": 1,
+        "stage_modifiers": 1,
+        "explore_terms": 1
+      },
+      "max_generated": 6
+    },
+    {
+      "id": "parenting_growth",
+      "label": "亲子成长与心理",
+      "layer": "explore",
+      "priority": 72,
+      "seed_source_ids": ["seed_keywords_xlsx_import"],
+      "dimension_source_ids": ["offline_dimension_design_2026_07_29"],
+      "seed_terms": [
+        "心理测评",
+        "心理量表",
+        "心理健康课件",
+        "家庭教育课程",
+        "亲子教育资料",
+        "早教启蒙",
+        "幼儿园环创",
+        "幼儿园教案"
+      ],
+      "product_forms": ["电子版", "测评表"],
+      "audiences": ["家长"],
+      "scenarios": ["亲子沟通"],
+      "stage_modifiers": ["启蒙"],
+      "explore_terms": ["情绪管理工具"],
+      "dimension_budgets": {
+        "product_forms": 2,
+        "audiences": 1,
+        "scenarios": 1,
+        "stage_modifiers": 1,
+        "explore_terms": 1
+      },
+      "max_generated": 6
+    },
+    {
+      "id": "adult_learning",
+      "label": "成人学习与课程",
+      "layer": "explore",
+      "priority": 68,
+      "seed_source_ids": ["seed_keywords_xlsx_import"],
+      "dimension_source_ids": ["offline_dimension_design_2026_07_29"],
+      "seed_terms": [
+        "电子书",
+        "电子杂志",
+        "PDF资料",
+        "音频课程",
+        "视频课程",
+        "训练营"
+      ],
+      "product_forms": ["课程包", "合集"],
+      "audiences": ["零基础"],
+      "scenarios": ["碎片学习"],
+      "stage_modifiers": ["入门"],
+      "explore_terms": ["自学资料包"],
+      "dimension_budgets": {
+        "product_forms": 2,
+        "audiences": 1,
+        "scenarios": 1,
+        "stage_modifiers": 1,
+        "explore_terms": 1
+      },
+      "max_generated": 6
+    },
+    {
+      "id": "creative_courses",
+      "label": "兴趣技能课程",
+      "layer": "explore",
+      "priority": 64,
+      "seed_source_ids": ["seed_keywords_xlsx_import"],
+      "dimension_source_ids": ["offline_dimension_design_2026_07_29"],
+      "seed_terms": [
+        "创意美术课件",
+        "书法课程",
+        "乐器课程"
+      ],
+      "product_forms": ["课程资料", "教案"],
+      "audiences": ["零基础"],
+      "scenarios": ["兴趣入门"],
+      "stage_modifiers": ["入门"],
+      "explore_terms": ["手作课程"],
+      "dimension_budgets": {
+        "product_forms": 2,
+        "audiences": 1,
+        "scenarios": 1,
+        "stage_modifiers": 1,
+        "explore_terms": 1
+      },
+      "max_generated": 6
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+# ===== 白名单：只上传以下顶层条目 =====
+/*
+!/src/
+!/tests/
+!/config/
+!/ops/
+!/tools/
+!/coordination/
+!/*.md
+!/*.cmd
+!/pyproject.toml
+!/uv.lock
+!/.gitignore
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# 虚拟环境
+.venv/
+
+# pytest 临时产物（用 --basetemp 指定的目录都会落在这里）
+.pytest_cache/
+.tmp/
+.test-tmp/
+.pytest-tmp-*/
+.pytest_tmp_*/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+# ===== 密钥与本地配置（绝不上传）=====
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*credential*
+*secret*
+project.private.config.json
+
+# ===== 浏览器登录态 / profile =====
+*profile*/
+User Data/
+Cookies
+Cookies-journal
+storage_state*.json
+
+# ===== 数据库与运行数据 =====
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite-shm
+*.sqlite-wal
+*.bak*
+data/
+logs/
+*.log
+
+# ===== 依赖与构建产物 =====
+node_modules/
+.npm-cache/
+venv/
+*.pyc
+.next/
+
+# ===== 系统与编辑器 =====
+.DS_Store
+# ===== 项目专属 =====
+config/emulator.json
+.pytest-tmp*/

@@ -1,0 +1,26 @@
+[project]
+name = "xhs-product-scout"
+version = "0.1.0"
+description = "小红书虚拟商品发现、手机页面采集与低粉爆款候选工作台"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "fastapi>=0.116,<1",
+  "uvicorn>=0.35,<1",
+  "pillow>=11,<13",
+  "rapidocr-onnxruntime>=1.4,<2",
+  "python-multipart>=0.0.20,<1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9"]
+
+[project.scripts]
+xhs-scout = "xhs_scout.cli:main"
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

@@ -1,0 +1,9 @@
+{
+  "adb_path": "C:\\Program Files\\BlueStacks_nxt\\HD-Adb.exe",
+  "serial": "127.0.0.1:5555",
+  "package": "com.xingin.xhs",
+  "instance": "Rvc64",
+  "unicode_input_package": "com.android.adbkeyboard",
+  "unicode_input_ime": "com.android.adbkeyboard/.AdbIME",
+  "restore_input_ime": "com.sohu.inputmethod.sogou.xiaomi/.SogouIME"
+}

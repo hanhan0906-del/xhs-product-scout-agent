@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "endpoint": "http://127.0.0.1:11434/api/chat",
+  "model": "qwen3-vl:4b-instruct-q4_K_M",
+  "timeout_seconds": 600,
+  "keep_alive": "30m",
+  "num_predict": 180
+}
